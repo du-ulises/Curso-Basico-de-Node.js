@@ -1,7 +1,8 @@
-const add = require('./src/addition')
-const sim = require('./src/intensive')
+const call = require('./src/call')
 
-//add.syncSum(1,2)
-//add.asyncSum(2,4)
+//console.log(call.sync('Diego Ulises'))
 
-sim.simulateAsync()
+//call.withCallback('Diego Ulises', call.sync)
+
+call.withPromise('Diego Ulises')
+    .then(name => { console.log(name)})
