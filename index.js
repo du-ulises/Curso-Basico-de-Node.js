@@ -1,7 +1,7 @@
-const cowsay = require('cowsay')
+const add = require('./src/addition')
+const sim = require('./src/intensive')
 
-console.log(cowsay.say({
-    text: "Hola soy cowsay",
-    e: "Oo",
-    t: "U"
-}))
+//add.syncSum(1,2)
+//add.asyncSum(2,4)
+
+sim.simulateAsync()
