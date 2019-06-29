@@ -1,11 +1,7 @@
-const errors = require('./src/errors')
-const handler = require('./src/handling')
+const greet = require('./src/greet')
 
-//handler.errorFirstCallbackWrong()
-/*
-try {
-    errors.standardErr.range()
-} catch (error) {
-    console.log('Ha ocurrido un error',err)
-}
-*/
+greet.emit('clap')
+greet.emit('shout', 'I LIKE')
+greet.emit('call', 'Diego Ulises', name => {
+    console.log(`Estamos llamando a ${name}`)
+})
