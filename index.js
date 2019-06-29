@@ -1,15 +1,8 @@
-const cp = require('child_process')
+const {
+    from0to,
+    asyncFrom0to
+} = require("./src/counter");
 
-function exectCommand(command) {
-    cp.exec(command, (err, stdout, stderr)=>{
-        if(err){
-            console.log(`Error: ${err}`)
-            return
-        }
-        //if(err) throw err
-        if(stdout) console.log(`Standard out: \n${stdout}`)
-        if(stderr) console.log(`Standard err: \n${stderr}`)
-    })
-}
-//exectCommand('ls')
-exectCommand('node ./src/script --base=5')
+// Llamadas a funciones
+asyncFrom0to(10,3);
+from0to(10, 2);
