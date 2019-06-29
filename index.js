@@ -1,8 +1,11 @@
-const {
-    from0to,
-    asyncFrom0to
-} = require("./src/counter");
+const errors = require('./src/errors')
+const handler = require('./src/handling')
 
-// Llamadas a funciones
-asyncFrom0to(10,3);
-from0to(10, 2);
+//handler.errorFirstCallbackWrong()
+/*
+try {
+    errors.standardErr.range()
+} catch (error) {
+    console.log('Ha ocurrido un error',err)
+}
+*/
