@@ -1,8 +1,21 @@
-const call = require('./src/call')
+const fs = require('fs')
+const opc = require('./src/fileops')
 
-//console.log(call.sync('Diego Ulises'))
+fs.readFile('./resources/number.txt', 'utf8', (err, text) => {
+    if (err) throw err
+    const number = text.split('\n').map(n => Number(n))
+    //console.log(number)
+    incValues = opc.incrementValues(number)
+    fs.writeFile('./resources/numbernew.txt', incValues.join('\n'), (err, result) => {
+        if (err) throw err
+    })
+})
 
-//call.withCallback('Diego Ulises', call.sync)
-
-call.withPromise('Diego Ulises')
-    .then(name => { console.log(name)})
+fs.readFile('./resources/name.txt', 'utf8', (err, text) => {
+    if (err) throw err
+    const names = text.split('\n')
+    mapCall = opc.callNames(names)
+    fs.writeFile('./resources/namenew.txt', mapCall.join('\n'), (err, result) => {
+        if (err) throw err
+    })
+})
