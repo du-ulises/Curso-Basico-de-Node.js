@@ -1,14 +1,19 @@
-const http = require('http')
-const fs = require('fs')
+const express = require('express')
+const app = express()
 const port = 3000
-const route = './resources/my_page.html'
 
-const server = http.createServer((req,res) => {
-    fs.readFile(route,(err, data) => {
-        if(err) { console.error(err); return }
-        res.end(data)
-    })
+app.get('/', (req, res) => {
+    res.send('Estoy en la ruta home')
 })
 
-console.log(`Iniciando servidor en el puerto ${port}`)
-server.listen(port)
+app.get('/app', (req, res) => {
+    res.send('Estoy en la ruta /app')
+})
+
+app.get('*', (req, res) => {
+    res.send('No existe recurso definido')
+})
+
+app.listen(port, () => {
+    console.log(`Server working at port: ${port}`)
+})
