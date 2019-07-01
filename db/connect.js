@@ -35,6 +35,6 @@ module.exports = (()=>{
     return {
         connect,
         disconnect,
-        instance
+        instance: ()=>instance,
     }
 })();

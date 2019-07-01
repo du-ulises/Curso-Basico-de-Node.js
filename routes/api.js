@@ -2,13 +2,13 @@ const API_BASE = "/api"
 const db = require("../db");
 
 module.exports = function(app){
-    app.get(`${API_BASE}/users`, (req, res)=>{
-        const query = db.getUsers();
+    app.get(`${API_BASE}/users`, async (req, res)=>{
+        const query = await db.getUsers();
         res.json(query);
     });
-    app.get(`${API_BASE}/user/age`, (req, res)=>{
+    app.get(`${API_BASE}/user/age`, async (req, res)=>{
         const { l, h } = req.query;
-        const query = db.getUserByAgeRange(l, h);
+        const query = await db.getUserByAgeRange(l, h);
         res.json(query);
     });
     /**
