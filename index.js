@@ -1,28 +1,23 @@
-const express = require("express");
-const app = express();
-const { PORT } = require("./config");
-const mongo = require("./db/connect");
+const server = require('http').Server()
+const io = require('socket.io')(server)
+const port = require('./config').SERVER_PORT
 
-require("./routes/api")(app);
-require("./routes/views")(app);
+const banner = `
+********************************************
+    Basic Node.js Course
+    Course Project
+    Tic Tac Toe Server
+********************************************
+Status: OnLine
+Listening on port: ${port}
+`
 
-async function initDB(){
-    const db = await mongo.connect();
-    if (db) { initExpress(); }
-}
+io.on('connection', (socket) => {
+    socket.on('register', (user) => {
+        console.info(`User registered: ${user.name}`)
+    })
+})
 
-function initExpress(){
-    console.log("Iniciando instancia de Express...");
-    app.listen(PORT, ()=>{
-        console.log("El servidor Express esta activo.");
-    });
-    process.on("SIGINT", closeApp);
-    process.on("SIGTERM", closeApp);
-}
-
-function closeApp(){
-    mongo.disconnect()
-        .then(()=>process.exit(0));
-}
-
-initDB();
+server.listen(port, () => {
+    console.info(banner)
+})
