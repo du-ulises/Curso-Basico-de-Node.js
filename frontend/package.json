@@ -21,6 +21,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "mocha": "^5.2.0",
     "redux-devtools-extension": "^2.13.5"
   }
 }
